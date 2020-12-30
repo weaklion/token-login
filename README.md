@@ -15,10 +15,9 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Database
+
+Mock data server (db/user.josn)
 
 ### commit
 ```
