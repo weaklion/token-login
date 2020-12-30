@@ -3,7 +3,7 @@ const jwt        = require('jsonwebtoken');
 const cors       = require('cors');
 const bodyParser = require('body-parser');
 const fs         = require('fs');
-const events     = require('./db/event.json');
+const users      = require("./db/user.json");
 
 const app = express();
 
@@ -16,14 +16,14 @@ app.get("/", (req,res) => {
   })
 });
 
-app.get("/dashboard", verifyToken, (req,res) => {
+app.get("/result", verifyToken, (req,res) => {
 
   jwt.verify(req.token, 'let_it_go', error => {
     if(error) {
       res.sendStatus(401);
     } else {
       res.json({
-        events : events
+        name : users.name
       })
     }
   })
@@ -38,13 +38,26 @@ app.post("/register", (req,res) => {
     };
 
     const data = JSON.stringify(user, null, 2);
-    const userEmail = require("./db/user.json").email;
-    console.log(data);
+    const userEmail = users.email;
+    const errorArray = [];
     const secret_key = "let_it_go";
 
     if( userEmail === req.body.email) {
-      res.sendStatus(400);
-    } else {
+      errorArray.push('an account with this email already exists.');
+    }
+
+    console.log(req.body);
+    
+    if ( req.body.password.length < 5 ){
+      errorArray.push("Password must be at least 5 characters ");
+    }
+
+    if(errorArray.length > 0) {
+      res.status(400).json({
+        error : errorArray
+      })
+    }
+    else {
       fs.writeFile("./src/db/user.json", data, (error) => {
         if(error) {
           console.log(error + data);
@@ -59,7 +72,7 @@ app.post("/register", (req,res) => {
       })
     }
   } else {
-    res.sendStatus(400);
+
   }
 });
 
@@ -71,14 +84,16 @@ app.post("/login", (req, res) => {
     req.body && req.body.email === userInfo.email &&
     req.body.password === userInfo.password
   ) {
-    const token = jwt.sign({ userInfo, secret_key});
+    const token = jwt.sign({userInfo}, secret_key);
     res.json({
       token,
       email : userInfo.email,
       name :  userInfo.name
     })
   } else {
-    res.sendStatus(400);
+    res.status(401).json({
+      error : 'Invalid Login. please try again'
+    });
   }
 });
 

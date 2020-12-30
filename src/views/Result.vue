@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h1> dashBoard</h1>
+    <h1> name : {{name}}</h1>
   </div>
 </template>
 
@@ -17,14 +17,15 @@
     data() {
       return {
         isLoading : true,
-        events : [],
+        name  : null
       };
     },
 
     created(){
-      axios.get("//localhost:3000/dashboard").then(({data}) => {
+      axios.get("//localhost:3000/result").then(({data}) => {
+  
         console.log(data);
-        this.events = data.events.events;
+        this.name = data.name;
         this.isLoading = false;
       })
       .catch((error) => {
