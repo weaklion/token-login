@@ -15,11 +15,9 @@ npm run serve
 npm run build
 ```
 
-### Database
 
-Mock data server (db/user.josn)
-
-### commit
+### commit , etc
 ```
- #dev = dev
+ #dev = dev  
+ Mock data server (db/user.json)
 ```
