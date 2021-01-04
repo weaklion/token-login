@@ -16,16 +16,11 @@ npm run start
 ```
 npm run build
 ```
-
-<<<<<<< HEAD
+ㄴ
 ### commit
-=======
-
-### commit , etc
->>>>>>> 9475f49e21ddb50bf49b64b8d473955627d86ecc
 ```
- #dev = dev  
- Mock data server (db/user.json)
+ #dev = dev
+ #master = master
 ```
 
 ### Reference
