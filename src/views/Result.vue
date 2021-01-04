@@ -1,37 +1,34 @@
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <template>
   <div>
-    <h1> name : {{name}}</h1>
+    <h1>name : {{ name }}</h1>
+    <p>token : {{ token }}</p>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 
-  import axios from "axios";
+export default {
+  data() {
+    return {
+      name: null,
+      token: null
+    };
+  },
 
-  export default {
-
-    data() {
-      return {
-        isLoading : true,
-        name  : null
-      };
-    },
-
-    created(){
-      axios.get("//localhost:3000/result").then(({data}) => {
-  
+  created() {
+    axios
+      .get("//localhost:3000/result")
+      .then(({ data }) => {
         console.log(data);
         this.name = data.name;
-        this.isLoading = false;
+        this.token = data.token;
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-      })
-    },
-    
+      });
   }
+};
 </script>

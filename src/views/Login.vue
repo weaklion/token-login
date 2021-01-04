@@ -1,20 +1,17 @@
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <template>
   <div>
     <form @submit.prevent="login">
-
       <label for="email">
         Email:
       </label>
-      <input v-model="email" type="email" name="email" value>
+      <input v-model="email" type="email" name="email" value />
 
       <label for="password">
         Password:
       </label>
-      <input v-model="password" type="password" name="password" value>
+      <input v-model="password" type="password" name="password" value />
 
       <p>{{ error }}</p>
 
@@ -30,30 +27,29 @@
 </template>
 
 <script>
-  export default {
-    
-    data() {
-      return {
-        email   : '',
-        password: null,
-        error   : null,
-      }
-    },
+export default {
+  data() {
+    return {
+      email: "",
+      password: null,
+      error: null
+    };
+  },
 
-    methods : {
-
-      login() {
-        this.$store.dispatch("login", {
+  methods: {
+    login() {
+      this.$store
+        .dispatch("login", {
           email: this.email,
           password: this.password
         })
         .then(() => {
-          this.$router.push({ name : 'Result'})
+          this.$router.push({ name: "Result" });
         })
-        .catch ((error) => {
-          this.error = error.response.data.error
-        })
-      },
+        .catch(error => {
+          this.error = error.response.data.error;
+        });
     }
   }
+};
 </script>

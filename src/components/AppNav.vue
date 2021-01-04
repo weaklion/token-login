@@ -1,7 +1,9 @@
 <style lang="scss">
-  #nav {
-    display: flex;
-  }
+#nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+}
 </style>
 
 <template>
@@ -14,38 +16,28 @@
       Result
     </router-link>
 
-    <router-link v-if="!loggedIn" to="/login" class="button"> 
-      Login 
+    <router-link v-if="!loggedIn" to="/login" class="button">
+      Login
     </router-link>
 
-    <button v-else class="button" @click="logout"> 
+    <button v-else class="button" @click="logout">
       Logout
     </button>
-
-
-
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 
-  import { mapGetters } from "vuex";
+export default {
+  computed: {
+    ...mapGetters(["loggedIn"])
+  },
 
-  export default {
-
-    computed : {
-      ...mapGetters([
-        "loggedIn"
-      ])
-    },
-
-    methods : {
-      logout () {
-        this.$store.dispatch('logout');
-      }
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
     }
-
-
-    
   }
+};
 </script>

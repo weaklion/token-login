@@ -1,13 +1,11 @@
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <template>
   <div class="home">
-    <h1>hello world!!@@##</h1>
+    <h1>Token Example</h1>
 
     <div v-if="!loggedIn">
-      <router-link to="/login">
+      <router-link to="/Login">
         Login
       </router-link>
       or
@@ -19,18 +17,11 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 
-  import { mapGetters } from "vuex";
-
-  export default {
-
-    computed : {
-
-      ...mapGetters([
-        "loggedIn"
-      ])
-
-    }
-
+export default {
+  computed: {
+    ...mapGetters(["loggedIn"])
   }
+};
 </script>

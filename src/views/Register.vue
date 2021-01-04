@@ -1,6 +1,4 @@
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 
 <template>
   <div>
@@ -8,22 +6,22 @@
       <label for="name">
         Name:
       </label>
-      <input v-model="name" type="text" name="name" value>
+      <input v-model="name" type="text" name="name" value />
 
       <label for="email">
         Email:
       </label>
-      <input v-model="email" type="email" name="email" value>
+      <input v-model="email" type="email" name="email" value />
 
       <label for="password">
         Password:
       </label>
-      <input v-model="password" type="password" name="password" value>
+      <input v-model="password" type="password" name="password" value />
 
       <ul>
         <li v-for="(error, index) in errors" :key="index">
-          <p> {{ error }}</p>
-        </li> 
+          <p>{{ error }}</p>
+        </li>
       </ul>
 
       <button type="submit" name="button">
@@ -38,32 +36,31 @@
 </template>
 
 <script>
-  export default {
-    
-    data() {
-      return {
-        name    : '',
-        email   : '',
-        password: null,
-        errors   : null
-      }
-    },
+export default {
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: null,
+      errors: null
+    };
+  },
 
-    methods : {
-
-      register() {
-        this.$store.dispatch("register", {
-          name : this.name,
+  methods: {
+    register() {
+      this.$store
+        .dispatch("register", {
+          name: this.name,
           email: this.email,
           password: this.password
         })
         .then(() => {
-          this.$router.push({ name : 'Result'})
+          this.$router.push({ name: "Login" });
         })
-        .catch((error) => {
-          this.errors = error.response.data.error
-        })
-      },
+        .catch(error => {
+          this.errors = error.response.data.error;
+        });
     }
   }
+};
 </script>

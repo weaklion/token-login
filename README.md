@@ -1,4 +1,6 @@
-# login
+#  Login token example
+
+
 
 ## Project setup
 ```
@@ -7,20 +9,19 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run start
 ```
 
-### Compiles and minifies for production
+### Build or Lint
 ```
 npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### commit
 ```
  #dev = dev
 ```
+
+### Reference
+
+https://tansfil.tistory.com/59 (쉽게 알아보는 서버 인증 2편)

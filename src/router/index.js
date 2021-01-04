@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Result from "../views/Result.vue";
 import Register from "../views/Register.vue";
-import Login    from "../views/Login.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -16,22 +16,20 @@ const routes = [
   {
     path: "/result",
     name: "Result",
-    component : Result,
-    meta : { requireAuth : true}
+    component: Result,
+    meta: { requireAuth: true }
   },
   {
-    path : "/login",
-    name : "login",
-    component : Login
+    path: "/login",
+    name: "Login",
+    component: Login
   },
   {
     path: "/register",
     name: "Register",
-    component : Register,
+    component: Register
   }
 ];
-
-
 
 const router = new VueRouter({
   mode: "history",
@@ -40,19 +38,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const loggedIn = localStorage.getItem('user');
-  if(to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
-    if(!loggedIn) {
+  const loggedIn = localStorage.getItem("user");
+  if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
+    if (!loggedIn) {
       alert("Login Please!");
-      next('/');
-      return
+      next("/");
+      return;
     }
-    next()
+    next();
   } else {
     next();
   }
-})
-
-
+});
 
 export default router;
